@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: fileexplorer-backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - minio
+    networks:
+      - fileexplorer-net
+
+  minio:
+    image: minio/minio:latest
+    container_name: fileexplorer-minio
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000" # API
+      - "9001:9001" # Web console
+    env_file:
+      - ./.env
+    volumes:
+      - minio-data:/data
+    networks:
+      - fileexplorer-net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: fileexplorer-frontend
+    ports:
+      - "5174:80"
+    env_file:
+      - ./.env
+    networks:
+      - fileexplorer-net
+    depends_on:
+      - backend
+
+volumes:
+  minio-data:
+
+networks:
+  fileexplorer-net:
+    driver: bridge
