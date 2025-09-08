@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+python-multipart
+minio
+authlib
+itsdangerous
+python-dotenv
+httpx
+transformers
+torch
+torchvision
+PyPDF2
+python-docx
+python-pptx
+pandas
