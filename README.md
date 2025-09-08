@@ -33,7 +33,16 @@ Built for the Full Stack Take-Home Assignment – containerized with Docker Comp
 
 ### 🎨 Modern UI
 - Responsive, clean, and user-friendly
-<img width="1920" height="1080" alt="Screenshot (90)" src="https://github.com/user-attachments/assets/9520fe97-9187-46f4-a32c-d18a475d12f1" />
+<img width="1920" height="1080" alt="Screenshot (83)" src="https://github.com/user-attachments/assets/ef3fbd9e-6c5a-4b66-b516-d124fd7519fb" />
+<img width="1920" height="1080" alt="Screenshot (86)" src="https://github.com/user-attachments/assets/2960ddfe-d744-4238-9194-72f2dc5046f6" />
+<img width="1920" height="1080" alt="Screenshot (87)" src="https://github.com/user-attachments/assets/849cf76a-61ff-4c02-b07e-b0561f2ffcfc" />
+<img width="1920" height="1080" alt="Screenshot (88)" src="https://github.com/user-attachments/assets/2133599e-e809-4405-b26f-9a0290cb4c99" />
+<img width="1920" height="1080" alt="Screenshot (89)" src="https://github.com/user-attachments/assets/036d5823-54c9-42dd-8a5b-2a0aed8b7159" />
+<img width="1920" height="1080" alt="Screenshot (90)" src="https://github.com/user-attachments/assets/025489a6-a429-429c-882e-6d7fbad570ad" />
+<img width="1920" height="1080" alt="Screenshot (91)" src="https://github.com/user-attachments/assets/077f300e-2ae8-40f9-83a1-dca856c1fff2" />
+
+
+
 
 ---
 
