@@ -82,13 +82,15 @@ Create a `.env` file in the `backend` directory:
 # --- Auth ---
 GOOGLE_CLIENT_ID=your-google-client-id
 GOOGLE_CLIENT_SECRET=your-google-client-secret
-OAUTH_REDIRECT_URI=http://localhost:8000/auth/callback/google
+GOOGLE_REDIRECT_URI=http://localhost:8000/auth/callback/google
+SECRET_KEY=supersecret
+FRONTEND_URL=http://localhost:5174
 
 # --- Storage ---
-S3_ENDPOINT=http://minio:9000
-S3_ACCESS_KEY=your-access-key
-S3_SECRET_KEY=your-secret-key
-S3_BUCKET=file-explorer
+MINIO_ENDPOINT=minio:9000
+MINIO_ACCESS_KEY=your-access-key
+MINIO_SECRET_KEY=your-secret-key
+MINIO_BUCKET=files
 
 # --- AI ---
 MISTRAL_API_KEY=your-mistral-api-key
