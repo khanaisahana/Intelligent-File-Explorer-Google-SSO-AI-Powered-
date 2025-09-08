@@ -1,31 +1,44 @@
-####🚀 Intelligent File Explorer (SSO + AI Powered)
+# 🚀 Intelligent File Explorer (SSO + AI Powered)
 
-A full-stack file explorer application with Google SSO login, file management, and AI-enhanced features.
+A full-stack file explorer application with Google SSO login, file management, and AI-enhanced features.  
 Built for the Full Stack Take-Home Assignment – containerized with Docker Compose for one-command deployment.
 
-✨ Features
-🔐 Single Sign-On (SSO) via Google OAuth2
-📂 File Management – Upload, view, delete files (PDF, DOCX, PPT, images, text, CSV, etc.)
-🗂️ Categorization – Auto-group files by type (pdf, doc, ppt, image, etc.)
+---
 
-🪄 AI-Powered Features
-Automatic file categorization (Mistral API fallback when extension is unknown)
+## ✨ Features
 
-AI-powered file search
+### 🔐 Authentication
+- Single Sign-On (SSO) via Google OAuth2
 
-Summarization of file contents (PDF, DOCX, TXT) with popup modal view
+### 📂 File Management
+- Upload, view, delete files (PDF, DOCX, PPT, images, text, CSV, etc.)
+- Auto-group files by type (pdf, doc, ppt, image, etc.)
 
-☁️ S3-Compatible Storage – Supports MinIO, AWS S3, or any S3 endpoint
+### 🪄 AI-Powered Features
+- Automatic file categorization (Mistral API fallback when extension is unknown)
+- AI-powered file search
+- Summarization of file contents (PDF, DOCX, TXT) with popup modal view
 
-🔧 Configurable via .env – no hardcoded credentials
+### ☁️ Storage
+- S3-Compatible Storage – Supports MinIO, AWS S3, or any S3 endpoint
 
-🐳 Dockerized – Run frontend + backend with a single docker-compose up
+### 🔧 Configurable
+- `.env` based configuration – no hardcoded credentials
 
-📜 Swagger API Docs at /docs
+### 🐳 Dockerized
+- Run frontend + backend with a single `docker-compose up`
 
-🎨 Modern UI – Responsive, clean, and user-friendly
+### 📜 Documentation
+- Swagger API Docs at `/docs`
 
-🏗️ Architecture
+### 🎨 Modern UI
+- Responsive, clean, and user-friendly
+
+---
+
+## 🏗️ Architecture
+
+```
 file-explorer/
 │── frontend/          # React app (SSO, file UI, AI integration)
 │── backend/           # FastAPI app (auth, file API, AI endpoints)
@@ -33,25 +46,27 @@ file-explorer/
 │── README.md          # Setup instructions
 │── design.md          # Architecture, API spec, folder structure
 │── ai_usage.md        # AI integration details
+```
 
+- **Frontend** → React (Vite) + Axios + React Router  
+- **Backend** → FastAPI (Python) with OAuth2, S3 integration, and AI endpoints  
+- **Storage** → MinIO (default) but configurable to AWS S3  
+- **AI** → Mistral API for categorization, search, and summarization  
 
-Frontend → React (Vite) + Axios + React Router
+---
 
-Backend → FastAPI (Python) with OAuth2, S3 integration, and AI endpoints
+## ⚡ Setup Instructions
 
-Storage → MinIO (default) but configurable to AWS S3
-
-AI → Mistral API for categorization, search, and summarization
-
-⚡ Setup Instructions
-1. Clone Repository
+### 1. Clone Repository
+```bash
 git clone https://github.com/your-username/file-explorer.git
 cd file-explorer
+```
 
-2. Configure Environment
+### 2. Configure Environment
+Create a `.env` file in the `backend` directory:
 
-Create a .env file in the backend directory:
-
+```bash
 # --- Auth ---
 GOOGLE_CLIENT_ID=your-google-client-id
 GOOGLE_CLIENT_SECRET=your-google-client-secret
@@ -65,103 +80,97 @@ S3_BUCKET=file-explorer
 
 # --- AI ---
 MISTRAL_API_KEY=your-mistral-api-key
+```
 
-3. Start with Docker
+### 3. Start with Docker
+```bash
 docker-compose up --build
+```
 
+- **Frontend** → http://localhost:3000  
+- **Backend API** → http://localhost:8000/docs  
+- **MinIO Console** → http://localhost:9001  
 
-Frontend → http://localhost:3000
+---
 
-Backend API → http://localhost:8000/docs
+## 🔑 Authentication (SSO)
 
-MinIO Console → http://localhost:9001
+- Click **“Sign in with Google”** on the frontend  
+- After successful login, redirected to the dashboard  
+- Session stored via cookies (`withCredentials`)  
 
-🔑 Authentication (SSO)
+---
 
-Click “Sign in with Google” on the frontend
+## 📂 File Features
 
-After successful login, redirected to the dashboard
+- **Upload** → Stored in S3 bucket under correct category  
+- **View** → Opens file directly from S3  
+- **Delete** → Removes file from S3  
+- **Grouping** → Files automatically grouped by category in UI  
 
-Session stored via cookies (withCredentials)
+---
 
-📂 File Features
+## 🤖 AI Features
 
-Upload → Stored in S3 bucket under correct category
+### File Categorization
+- Auto-maps by extension (`.pdf → pdf`, `.ppt → ppt`, etc.)  
+- Uses **Mistral LLM** to detect unknown file types  
 
-View → Opens file directly from S3
+### AI Search
+- Semantic search powered by **Mistral API**  
+- Results displayed instantly  
 
-Delete → Removes file from S3
+### File Summarization
+- Generates summary of file contents (**PDF / DOCX / TXT**)  
+- Displayed in a popup modal  
 
-Grouping → Files automatically grouped by category in UI
+---
 
-🤖 AI Features
+## 📜 API Endpoints (Backend)
 
-File Categorization
+| Method | Endpoint                       | Description                    |
+|--------|--------------------------------|--------------------------------|
+| GET    | `/auth/login/google`           | Google OAuth2 login            |
+| GET    | `/auth/me`                     | Get current user info          |
+| POST   | `/files/upload-ai`             | Upload file                    |
+| GET    | `/files/files-ai`              | List files with categories     |
+| DELETE | `/files/delete/{filename}`     | Delete file                    |
+| GET    | `/files/view/{filename}`       | View/download file             |
+| GET    | `/files/search-ai/{query}`     | AI-powered file search         |
+| GET    | `/files/summarize/{filename}`  | Generate AI summary of file    |
 
-Auto-maps by extension (.pdf → pdf, .ppt → ppt, etc.)
+➡️ Swagger docs available at → `/docs`
 
-Uses Mistral LLM to detect unknown file types
+---
 
-AI Search
+## 📘 Documentation
 
-Search query → Mistral-powered semantic search
+- **design.md** → Architecture, folder structure, API spec  
+- **ai_usage.md** → AI integration details (categorization, search, summarization)  
 
-Results displayed instantly
+---
 
-File Summarization
+## ✅ Acceptance Criteria Coverage
 
-Generate summary of file contents (PDF/DOCX/TXT)
+✔️ Google SSO  
+✔️ Upload, view, delete files  
+✔️ S3-compatible storage (configurable via env)  
+✔️ REST API with Swagger docs  
+✔️ Docker Compose end-to-end  
+✔️ No hardcoded credentials/config  
+✔️ Documentation included  
 
-Displayed in a popup modal
+---
 
-📜 API Endpoints (Backend)
-Method	Endpoint	Description
-GET	/auth/login/google	Google OAuth2 login
-GET	/auth/me	Get current user info
-POST	/files/upload-ai	Upload file
-GET	/files/files-ai	List files with categories
-DELETE	/files/delete/{filename}	Delete file
-GET	/files/view/{filename}	View/download file
-GET	/files/search-ai/{query}	AI-powered file search
-GET	/files/summarize/{filename}	Generate AI summary of file
+## 🌟 Bonus Features
 
-Swagger docs available at → /docs
+✅ AI-powered file categorization, search & summarization  
+✅ Metadata support (stored with files in S3)  
+✅ Modern polished UI with modal summaries  
+✅ Fully containerized with MinIO integration  
 
-📘 Documentation
+---
 
-design.md
- → Architecture, folder structure, API spec
+## 🧑‍💻 Author
 
-ai_usage.md
- → AI integration details (categorization, search, summarization)
-
-✅ Acceptance Criteria Coverage
-
-✔️ Google SSO
-
-✔️ Upload, view, delete files
-
-✔️ S3-compatible storage (configurable via env)
-
-✔️ REST API with Swagger docs
-
-✔️ Docker Compose end-to-end
-
-✔️ No hardcoded credentials/config
-
-✔️ Documentation included
-
-🌟 Bonus Features
-
-✅ AI-powered file categorization, search & summarization
-
-✅ Metadata support (stored with files in S3)
-
-✅ Modern polished UI with modal summaries
-
-✅ Fully containerized with MinIO integration
-
-🧑‍💻 Author
-
-Developed by Mahadev Hummanagol
-📧 [Your Email] | 🌐 [Your GitHub Profile]
+Developed by **Sahana Khanai**
