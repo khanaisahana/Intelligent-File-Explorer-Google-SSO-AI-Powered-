@@ -33,6 +33,7 @@ Built for the Full Stack Take-Home Assignment – containerized with Docker Comp
 
 ### 🎨 Modern UI
 - Responsive, clean, and user-friendly
+<img width="1920" height="1080" alt="Screenshot (90)" src="https://github.com/user-attachments/assets/9520fe97-9187-46f4-a32c-d18a475d12f1" />
 
 ---
 
